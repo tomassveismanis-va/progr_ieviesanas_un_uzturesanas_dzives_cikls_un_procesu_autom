@@ -16,3 +16,8 @@ test('DELETE /tasks/:id removes a task', async () => {
   const res = await request(app).delete(`/tasks/${created.body.id}`);
   expect(res.statusCode).toBe(204);
 });
+
+test('GET /tasks filters by category_id', async () => {
+  const res = await request(app).get('/tasks?category_id=1');
+  expect(res.statusCode).toBe(200);
+});
