@@ -15,6 +15,10 @@ app.get('/tasks/:id', async (req, res) => {
   const task = await taskModel.getById(req.params.id);
   res.json(task);
 });
+app.put('/tasks/:id', async (req, res) => {
+  const [task] = await taskModel.update(req.params.id, req.body);
+  res.json(task);
+});
 app.listen(3000, () => console.log('Server running on port 3000'));
 
 module.exports = app;
