@@ -7,6 +7,10 @@ app.post('/tasks', async (req, res) => {
   const [task] = await taskModel.create(req.body);
   res.status(201).json(task);
 });
+app.get('/tasks', async (req, res) => {
+  const tasks = await taskModel.getAll();
+  res.json(tasks);
+});
 app.listen(3000, () => console.log('Server running on port 3000'));
 
 module.exports = app;
