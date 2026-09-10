@@ -8,4 +8,9 @@ test('GET /tasks returns array', async () => {
   const res = await request(app).get('/tasks');
   expect(Array.isArray(res.body)).toBe(true);
 });
+test('DELETE /tasks/:id removes a task', async () => {
+  const created = await request(app).post('/tasks').send({ title: 'To delete' });
+  const res = await request(app).delete(`/tasks/${created.body.id}`);
+  expect(res.statusCode).toBe(204);
+});
 });
