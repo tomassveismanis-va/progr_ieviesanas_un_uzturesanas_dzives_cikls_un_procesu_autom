@@ -1,3 +1,4 @@
+// Routes use taskModel for all database access
 const express = require('express');
 const taskModel = require('./models/taskModel');
 const app = express();
