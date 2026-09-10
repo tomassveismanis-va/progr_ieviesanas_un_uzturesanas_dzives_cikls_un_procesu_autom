@@ -19,6 +19,10 @@ app.put('/tasks/:id', async (req, res) => {
   const [task] = await taskModel.update(req.params.id, req.body);
   res.json(task);
 });
+app.delete('/tasks/:id', async (req, res) => {
+  await taskModel.remove(req.params.id);
+  res.status(204).send();
+});
 app.listen(3000, () => console.log('Server running on port 3000'));
 
 module.exports = app;
