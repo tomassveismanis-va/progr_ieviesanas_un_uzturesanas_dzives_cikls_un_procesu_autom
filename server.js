@@ -7,7 +7,11 @@ app.post('/tasks', async (req, res) => {
   if (!req.body.title) {
     return res.status(400).json({ error: 'title is required' });
   }
-  const [task] = await taskModel.create(req.body);
+  const taskData = {
+    title: req.body.title,
+    priority: req.body.priority || 'normal'
+  };
+  const [task] = await taskModel.create(taskData);
   res.status(201).json(task);
 });
 app.get('/tasks', async (req, res) => {
