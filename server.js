@@ -20,6 +20,7 @@ app.get('/tasks', async (req, res) => {
 });
 app.get('/tasks/:id', async (req, res) => {
   const task = await taskModel.getById(req.params.id);
+  if (!task) return res.status(404).json({ error: 'not found' });
   res.json(task);
 });
 app.put('/tasks/:id', async (req, res) => {
